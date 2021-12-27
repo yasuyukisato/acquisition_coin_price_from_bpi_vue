@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Vue.jsでビットコイン価格を取得</title>
   </head>
   <body>
@@ -11,7 +12,7 @@
       <h1>コインapi</h1>
 
       <h2>bitcoin price</h2>
-      <ul>
+      <ul v-cloak>
         <li v-for="(rate, currency) in bpi">
           {{currency}}：{{rate.rate_float | currencyDecimal}}ドル
         </li>
