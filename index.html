@@ -12,11 +12,17 @@
       <h1>コインapi</h1>
 
       <h2>bitcoin price</h2>
-      <ul v-cloak>
-        <li v-for="(rate, currency) in bpi">
-          {{currency}}：{{rate.rate_float | currencyDecimal}}ドル
-        </li>
-      </ul>
+
+      <!-- エラーがあった場合の画面 -->
+      <section v-if="hasError">エラー</section>
+      <!-- エラーがない場合の画面 -->
+      <section v-else>
+        <ul v-cloak>
+          <li v-for="(rate, currency) in bpi">
+            {{currency}}：{{rate.rate_float | currencyDecimal}}ドル
+          </li>
+        </ul>
+      </section>
 
       <!-- デバック -->
       <!-- <pre> {{ bpi }}</pre> -->

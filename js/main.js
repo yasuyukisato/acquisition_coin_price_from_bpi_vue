@@ -2,6 +2,7 @@ const app = new Vue({
   el: "#app",
   data: {
     bpi: null,
+    hasError: false,
     beforMount: "hoge",
     mounted: "mounted",
   },
@@ -30,9 +31,12 @@ const app = new Vue({
         this.bpi = response.data.bpi;
         console.log(this);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(
+        function (error) {
+          console.log(error);
+          this.hasError = true;
+        }.bind(this)
+      );
   },
   // 意図的にコンポーネントが削除される処理をかかないと到達しない
   beforeDestroy() {},
