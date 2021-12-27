@@ -3,6 +3,7 @@ const app = new Vue({
   data: {
     bpi: null,
     hasError: false,
+    loading: true,
     beforMount: "hoge",
     mounted: "mounted",
   },
@@ -35,6 +36,11 @@ const app = new Vue({
         function (error) {
           console.log(error);
           this.hasError = true;
+        }.bind(this)
+      )
+      .finally(
+        function () {
+          this.loading = false;
         }.bind(this)
       );
   },

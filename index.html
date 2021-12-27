@@ -17,6 +17,7 @@
       <section v-if="hasError">エラー</section>
       <!-- エラーがない場合の画面 -->
       <section v-else>
+        <div v-if="loading">loading...</div>
         <ul v-cloak>
           <li v-for="(rate, currency) in bpi">
             {{currency}}：{{rate.rate_float | currencyDecimal}}ドル
