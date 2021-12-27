@@ -9,7 +9,16 @@
   <body>
     <div id="app">
       <h1>コインapi</h1>
-      <pre> {{ bpi }}</pre>
+
+      <h2>bitcoin price</h2>
+      <ul>
+        <li v-for="(rate, currency) in bpi">
+          {{currency}}：{{rate.rate_float | currencyDecimal}}ドル
+        </li>
+      </ul>
+
+      <!-- デバック -->
+      <!-- <pre> {{ bpi }}</pre> -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

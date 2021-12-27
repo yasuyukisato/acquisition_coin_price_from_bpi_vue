@@ -20,18 +20,28 @@ const app = new Vue({
     console.log("beforeMount");
   },
   // 読み込み時に呼ばれている
+  //即時関数でかく場合はthisの参照先がwindowオブジェクトとなるため、bind(this)でvueインスタンスと紐付けをする必要がある
+  // アロー関数で書くとthisはvueインスタンスをさすため、bind(this)はいらない
   mounted() {
     console.log("mounted");
     axios
       .get("https://api.coindesk.com/v1/bpi/currentprice.json")
-      .then(function (response) {
+      .then((response) => {
         this.bpi = response.data.bpi;
+        console.log(this);
       })
       .catch(function (error) {
         console.log(error);
       });
   },
-
   // 意図的にコンポーネントが削除される処理をかかないと到達しない
   beforeDestroy() {},
+
+  // Vue.js のフィルタは、本質的には「値を取り、加工し、加工した値を返す」関数
+  filters: {
+    currencyDecimal(value) {
+      // 小数点切り捨て
+      return value.toFixed();
+    },
+  },
 });
